@@ -12,24 +12,27 @@ chat = None
 if "OPENAI_API_KEY" not in st.session_state:
     st.session_state["OPENAI_API_KEY"] = ""
 elif st.session_state["OPENAI_API_KEY"] != "":
-    chat = ChatOpenAI(openai_api_key=st.session_state["OPENAI_API_KEY"])
+    chat = ChatOpenAI(
+        model_name="gpt-3.5-turbo",
+        openai_api_key=st.session_state["OPENAI_API_KEY"]
+    )
 
-if "PINECONE_API_KEY" not in st.session_state:
-    st.session_state["PINECONE_API_KEY"] = ""
+# if "PINECONE_API_KEY" not in st.session_state:
+#     st.session_state["PINECONE_API_KEY"] = ""
 
-if "PINECONE_ENVIRONMENT" not in st.session_state:
-    st.session_state["PINECONE_ENVIRONMENT"] = ""
+# if "PINECONE_ENVIRONMENT" not in st.session_state:
+#     st.session_state["PINECONE_ENVIRONMENT"] = ""
 
-st.set_page_config(page_title="Welcome to ASL", layout="wide")
+st.set_page_config(page_title="Welcome to CB's ChatBot", layout="wide")
 
-st.title("🤠 Welcome to ASL")
+st.title("🩵 Welcome to CB's ChatBot 🩵")
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
 
 if chat:
     with st.container():
-        st.header("Chat with GPT")
+        st.header("Chat with your CB")
 
         for message in st.session_state["messages"]:
             if isinstance(message, HumanMessage):
